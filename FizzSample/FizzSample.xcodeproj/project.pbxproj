@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3917AE0233A3EDB00F90832 /* FizzClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADA233A3ECF00F90832 /* FizzClient.framework */; };
+		B3917AE1233A3EDB00F90832 /* FizzClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADA233A3ECF00F90832 /* FizzClient.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B3917AE2233A3EDD00F90832 /* MQTTClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADB233A3ECF00F90832 /* MQTTClient.framework */; };
+		B3917AE3233A3EDD00F90832 /* MQTTClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADB233A3ECF00F90832 /* MQTTClient.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B3917AE4233A3EEF00F90832 /* SocketRocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADC233A3ECF00F90832 /* SocketRocket.framework */; };
+		B3917AE5233A3EEF00F90832 /* SocketRocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADC233A3ECF00F90832 /* SocketRocket.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B3A893C12338D0810022564F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A893C02338D0810022564F /* AppDelegate.m */; };
 		B3A893CA2338D0810022564F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A893C82338D0810022564F /* Main.storyboard */; };
 		B3A893CC2338D0830022564F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3A893CB2338D0830022564F /* Assets.xcassets */; };
@@ -23,6 +29,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B3917AE1233A3EDB00F90832 /* FizzClient.framework in Embed Frameworks */,
+				B3917AE5233A3EEF00F90832 /* SocketRocket.framework in Embed Frameworks */,
+				B3917AE3233A3EDD00F90832 /* MQTTClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -30,6 +39,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B3917ADA233A3ECF00F90832 /* FizzClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FizzClient.framework; sourceTree = "<group>"; };
+		B3917ADB233A3ECF00F90832 /* MQTTClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MQTTClient.framework; sourceTree = "<group>"; };
+		B3917ADC233A3ECF00F90832 /* SocketRocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SocketRocket.framework; sourceTree = "<group>"; };
 		B3A893BC2338D0810022564F /* FizzSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FizzSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3A893BF2338D0810022564F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B3A893C02338D0810022564F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -49,12 +61,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3917AE2233A3EDD00F90832 /* MQTTClient.framework in Frameworks */,
+				B3917AE4233A3EEF00F90832 /* SocketRocket.framework in Frameworks */,
+				B3917AE0233A3EDB00F90832 /* FizzClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B3917AD9233A3E5300F90832 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B3917ADA233A3ECF00F90832 /* FizzClient.framework */,
+				B3917ADB233A3ECF00F90832 /* MQTTClient.framework */,
+				B3917ADC233A3ECF00F90832 /* SocketRocket.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
 		B3A893B32338D0810022564F = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +104,7 @@
 				B3A893BF2338D0810022564F /* AppDelegate.h */,
 				B3A893C02338D0810022564F /* AppDelegate.m */,
 				B3A893D82338D1F30022564F /* Views */,
+				B3917AD9233A3E5300F90832 /* Frameworks */,
 				B3A893CB2338D0830022564F /* Assets.xcassets */,
 				B3A893C82338D0810022564F /* Main.storyboard */,
 				B3A893CD2338D0830022564F /* LaunchScreen.storyboard */,
@@ -328,7 +354,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FizzSample/Frameworks",
+				);
 				INFOPLIST_FILE = FizzSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -347,7 +376,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FizzSample/Frameworks",
+				);
 				INFOPLIST_FILE = FizzSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

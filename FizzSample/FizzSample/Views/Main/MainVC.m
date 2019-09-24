@@ -7,6 +7,7 @@
 //
 
 #import "MainVC.h"
+#import <MQTTClient/MQTTLog.h>
 #import <FizzClient/FizzClient.h>
 
 #define HeartBeat           2// seconds
@@ -49,6 +50,9 @@
     
     // fizz setup
     [self initializeFizz];
+    
+    // log settings for MQTT
+    [MQTTLog setLogLevel:DDLogLevelOff];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
