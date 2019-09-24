@@ -1,0 +1,6 @@
+framework module FizzClient {
+  umbrella header "FizzClient.h"
+
+  export *
+  module * { export * }
+}
