@@ -10,7 +10,6 @@
 #import <MQTTClient/MQTTLog.h>
 #import <FizzClient/FizzClient.h>
 
-#define HeartBeat           2// seconds
 #define HistoryPageSize     10
 #define CellHeight          60
 #define ConnectText         @"Connect"
@@ -24,8 +23,7 @@
     BOOL _initSuccess;
     
     NSString *_userId;
-    NSString *_locale;
-    NSTimer *_updateEmitter;
+    NSNumber *_locale;
     NSMutableArray<FizzChannelMessage *> *_messages;
 }
 
@@ -35,7 +33,6 @@
 
 #pragma mark - UIViewController - life cycle methods
 -(void)dealloc {
-    [_updateEmitter invalidate];
     [_messages removeAllObjects];
 }
 
@@ -95,7 +92,7 @@
     
     // localeDropdown
     _localeDropdown.items = @[@"English", @"French", @"Spanish"];
-    _localeDropdown.itemIds = @[@"en", @"fr", @"es"];
+    _localeDropdown.itemIds = @[@(English), @(French), @(Spanish)];
     _localeDropdown.delegate = self;
 }
 
@@ -189,7 +186,7 @@
 #pragma mark - private helper methods - fizz lifecycle
 -(void)openFizz {
     __weak MainVC *wself = self;
-    [[FizzClient instance] openWithUser:_userId locale:_locale services:All andErrorAck:^(FizzError *openError) {
+    [[FizzClient instance] openWithUser:_userId locale:_locale.intValue services:All andErrorAck:^(FizzError *openError) {
         if(openError) {
             NSLog(@"fizz:: openError: %@", openError.errorDescription);
             [wself showAlert:@"Unable to open connection!!!"];
@@ -209,10 +206,7 @@
 
 -(void)initializeFizz {
     FizzClient *fizzClient = [FizzClient instance];
-    // setup updateEmmitter for queue processing
-    _updateEmitter = [NSTimer scheduledTimerWithTimeInterval:HeartBeat repeats:YES block:^(NSTimer *timer) {
-        [fizzClient update];
-    }];
+    
     // initialize fizz
     FizzError *initError = [fizzClient initializeWithAppId:AppId andSecret:AppSecret];
     BOOL initSuccess = _initSuccess = !initError;

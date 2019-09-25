@@ -46,4 +46,15 @@ enum FizzServices {
     All = Chat | Analytics
 };
 
+enum FizzLanguageCodes {
+    Afrikaans, Arabic, Bangla, BosnianLatin, Bulgarian,
+    CantoneseTraditional, Catalan, ChineseSimplified, ChineseTraditional, Croatian,
+    Czech, Danish, Dutch, English, Estonian, Fijian, Filipino, Finnish, French, German,
+    Greek, HaitianCreole, Hebrew, Hindi, HmongDaw, Hungarian, Icelandic, Indonesian, Italian,
+    Japanese, Kiswahili, Klingon, KlingonPlqaD, Korean, Latvian, Lithuanian, Malagasy, Malay,
+    Maltese, Norwegian, Persian, Polish, Portuguese, QueretaroOtomi, Romanian, Russian, Samoan,
+    SerbianCyrillic, SerbianLatin, Slovak, Slovenian, Spanish, Swedish, Tahitian, Tamil, Telugu,
+    Thai, Tongan, Turkish, Ukrainian, Urdu, Vietnamese, Welsh, YucatecMaya
+};
+
 #endif /* FizzEnums_h */
