@@ -26,9 +26,13 @@
 
 ![](https://user-images.githubusercontent.com/18396012/65511377-836d3380-def0-11e9-9ae9-31836c3f129b.png)
 
----------------
-### Integration
----------------
+---------------------
+### Integration Guide
+---------------------
+
+#### Threading Model
+The FizzClient uses multiple threads internally to run I/O in the background. However all callbacks and events are posted to the main thread so that the UI can be updated in a safe manner. Also please note that all Fizz client APIs should also be called from the main thread. This simplifies the process of integrating Fizz into iOS applications.
+
 
 #### Setup Event Listener
 1. Make your class inherit FizzChannelMessageListener and implement its delegate methods that you want to observe.
@@ -112,10 +116,6 @@ NSDictionary *myCustomData = @{
         }
         else {
             // your code here to deal with historic messages
-            // donot perform any async tasks directly in ack blocks
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // your code here to deal with any other async calles or UI related tasks
-            });
         }
     }];
 ```
