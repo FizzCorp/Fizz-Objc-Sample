@@ -97,15 +97,14 @@
 }
 
 -(void)reloadTableView {
-    __weak MainVC *wself = self;
+    [_messagesTable reloadData];
     NSUInteger totalMessages = _messages.count;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [wself.messagesTable reloadData];
-        if(totalMessages > wself.messagesTable.visibleCells.count) {
-            [wself.messagesTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:totalMessages-1 inSection:0]
-                                       atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-        }
-    });
+    
+    if(totalMessages > _messagesTable.visibleCells.count) {
+        NSIndexPath *rowIdx = [NSIndexPath indexPathForRow:totalMessages-1 inSection:0];
+        [_messagesTable scrollToRowAtIndexPath:rowIdx
+                              atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
 }
 
 -(void)clearMessagesTable {
@@ -123,11 +122,8 @@
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Fizz" message:message preferredStyle:UIAlertControllerStyleAlert];
     
-    __weak MainVC *wself = self;
     [alertController addAction:dismissAction];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [wself presentViewController:alertController animated:YES completion:nil];
-    });
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void)animateMessageField:(float)bottomMargin {
@@ -187,6 +183,7 @@
 -(void)openFizz {
     __weak MainVC *wself = self;
     [[FizzClient instance] openWithUser:_userId locale:_locale.intValue services:All andErrorAck:^(FizzError *openError) {
+        [wself.toggleBtn setEnabled:YES];
         if(openError) {
             NSLog(@"fizz:: openError: %@", openError.errorDescription);
             [wself showAlert:@"Unable to open connection!!!"];
@@ -197,6 +194,7 @@
 -(void)closeFizz {
     __weak MainVC *wself = self;
     [[FizzClient instance] close:^(FizzError *closeError) {
+        [wself.toggleBtn setEnabled:YES];
         if(closeError) {
             NSLog(@"fizz:: closeError: %@", closeError.errorDescription);
             [wself showAlert:@"Unable to close connection!!!"];
@@ -240,11 +238,9 @@
         }
         else {
             [wself loadMessages:messages];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // subscribing channel after fetching history to avoid conflict with latest messages
-                // to keep track of real time messages, subscribe first and sort the messages array by messageId
-                [wself joinChannel];
-            });
+            [wself joinChannel];
+            // subscribing channel after fetching history to avoid conflict with latest messages
+            // to keep track of real time messages, subscribe first and sort the messages array by messageId
         }
     }];
 }
@@ -333,9 +329,7 @@
 
 #pragma mark - delegate methods - FizzChannelMessageListener
 -(void)onDisconnectedEventReceived {
-    [_toggleBtn setEnabled:YES];
     [_toggleBtn setTitle:ConnectText forState:UIControlStateNormal];
-    
     [self clearMessagesTable];
 }
 
@@ -344,9 +338,7 @@
 }
 
 -(void)onConnectedEventReceived:(BOOL)status syncRequired:(BOOL)syncRequired {
-    [_toggleBtn setEnabled:YES];
     [_toggleBtn setTitle:DisconnectText forState:UIControlStateNormal];
-    
     [self fetchHistoricMessages];
 }
 
