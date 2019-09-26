@@ -5,14 +5,14 @@
 ----------------
 
 #### Framework
->Download **FizzClient.Framework** from [Latest Release](https://github.com/FizzCorp/Fizz-iOS-Framework/releases/tag/0.0.1).
+>Download **FizzClient.Framework.zip** from [Latest Release](https://github.com/FizzCorp/Fizz-iOS-Framework/releases/tag/0.0.1).
 
 #### Dependent Frameworks
 >**FizzClient.framework** requires [MQTTClient.framework](https://github.com/novastone-media/MQTT-Client-Framework) and [SocketRocket.framework](https://github.com/facebook/SocketRocket/releases/tag/0.4.2). For your convenience the dependent frameworks are generated from their respective code repositories and are made part of the releases. Simply download **dependencies.zip** from [Latest Release](https://github.com/FizzCorp/Fizz-iOS-Framework/releases/tag/0.0.1).
 
 
 #### Embed To Your Xcode Project
->Once you have downloaded all 3 frameworks i-e; **FizzClient.Framework**, **MQTTClient.framework** and **SocketRocket.framework**. Follow these steps to add the frameworks to your Xcode project.
+>Once you have downloaded and extracted all 3 frameworks i-e; **FizzClient.Framework**, **MQTTClient.framework** and **SocketRocket.framework**. Follow these steps to add the frameworks to your Xcode project.
 
 1. Copy the frameworks in your project's frameworks folder
 
