@@ -79,7 +79,7 @@ In order to receive live messages sent in a channel you must subscribe to that c
 }];
 ```
 #### Publish Message
-In order to publish a message in a channel follow the following code snippet.
+In order to publish a message in a channel, refer to the following code snippet.
 ```objc
 // assuming Fizz is initialized and listener is registered
 NSDictionary *myCustomData = @{
@@ -98,7 +98,7 @@ NSDictionary *myCustomData = @{
     }];
 ```
 #### Fetch Messages
-In order to fetch historic messages in a channel follow the following code snippet.
+In order to fetch historic messages in a channel, refer to the following code snippet.
 ```objc
 // assuming Fizz is initialized and listener is registered
 [[FizzClient instance].chat queryLatestMessagesInChannel:@"YourChannelId" withCount:15
@@ -110,4 +110,15 @@ In order to fetch historic messages in a channel follow the following code snipp
             // your code here to deal with historic messages
         }
     }];
+```
+---------
+### Notes
+---------
+#### MQTT Logs
+**MQTTClient.framework** prints too many logs on the console related to its events. To tune the log settings as per your requirement, refer to the following code snippet.
+```objc
+#import <MQTTClient/MQTTLog.h>
+
+// log settings for MQTT
+[MQTTLog setLogLevel:DDLogLevelOff];
 ```
