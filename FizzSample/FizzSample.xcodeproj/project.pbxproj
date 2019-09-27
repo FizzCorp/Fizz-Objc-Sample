@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		B3917AE0233A3EDB00F90832 /* FizzClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADA233A3ECF00F90832 /* FizzClient.framework */; };
-		B3917AE1233A3EDB00F90832 /* FizzClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADA233A3ECF00F90832 /* FizzClient.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B3917AE1233A3EDB00F90832 /* FizzClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADA233A3ECF00F90832 /* FizzClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B3917AE2233A3EDD00F90832 /* MQTTClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADB233A3ECF00F90832 /* MQTTClient.framework */; };
-		B3917AE3233A3EDD00F90832 /* MQTTClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADB233A3ECF00F90832 /* MQTTClient.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B3917AE3233A3EDD00F90832 /* MQTTClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADB233A3ECF00F90832 /* MQTTClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B3917AE4233A3EEF00F90832 /* SocketRocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADC233A3ECF00F90832 /* SocketRocket.framework */; };
-		B3917AE5233A3EEF00F90832 /* SocketRocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADC233A3ECF00F90832 /* SocketRocket.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B3917AE5233A3EEF00F90832 /* SocketRocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3917ADC233A3ECF00F90832 /* SocketRocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B3A893C12338D0810022564F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A893C02338D0810022564F /* AppDelegate.m */; };
 		B3A893CA2338D0810022564F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A893C82338D0810022564F /* Main.storyboard */; };
 		B3A893CC2338D0830022564F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3A893CB2338D0830022564F /* Assets.xcassets */; };
@@ -353,7 +353,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FizzSample/Frameworks",
@@ -367,6 +369,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fizz.FizzSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;

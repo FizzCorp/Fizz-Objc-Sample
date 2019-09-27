@@ -1,5 +1,5 @@
 # Fizz-iOS-Framework
-**FizzClient.framework** is compatible with iOS **8.0** and above. Follow the steps below for installation and Integration.
+**FizzClient.framework** is compatible with iOS **8.0** and above. Follow the steps below for [Installation](#installation) and [Integration](#integration-guide).
 
 ----------------
 ### Installation
@@ -22,7 +22,7 @@ Once you have downloaded and extracted all 3 frameworks i-e; **FizzClient.Framew
 
 3. Embed the frameworks to your project from project settings **General > Embeded Frameworks** section
 
-![](https://user-images.githubusercontent.com/18396012/65511377-836d3380-def0-11e9-9ae9-31836c3f129b.png)
+![](https://user-images.githubusercontent.com/18396012/65749209-260af980-e11f-11e9-86ea-19fad96ba4e6.png)
 
 ---------------------
 ### Integration Guide
