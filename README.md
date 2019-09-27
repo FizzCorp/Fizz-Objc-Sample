@@ -1,20 +1,17 @@
 # Fizz-iOS-Framework
->**FizzClient.framework** is compatible with iOS **8.0** and above. Follow the steps below for installation and Integration.
+**FizzClient.framework** is compatible with iOS **8.0** and above. Follow the steps below for installation and Integration.
 
 ----------------
 ### Installation
 ----------------
-
 #### Framework
->Download **FizzClient.Framework.zip** from [Latest Release](https://github.com/FizzCorp/Fizz-iOS-Framework/releases/tag/v1.0).
+Download **FizzClient.Framework.zip** from [Latest Release](https://github.com/FizzCorp/Fizz-iOS-Framework/releases/tag/v1.0).
 
 #### Dependent Frameworks
->**FizzClient.framework** requires [MQTTClient.framework](https://github.com/novastone-media/MQTT-Client-Framework) and [SocketRocket.framework](https://github.com/facebook/SocketRocket/releases/tag/0.4.2). For your convenience the dependent frameworks are generated from their respective code repositories and are made part of the releases. Simply download **dependencies.zip** from [Latest Release](https://github.com/FizzCorp/Fizz-iOS-Framework/releases/tag/v1.0).
-
+**FizzClient.framework** requires [MQTTClient.framework](https://github.com/novastone-media/MQTT-Client-Framework) and [SocketRocket.framework](https://github.com/facebook/SocketRocket/releases/tag/0.4.2). For your convenience the dependent frameworks are generated from their respective code repositories and are made part of the releases. Simply download **dependencies.zip** from [Latest Release](https://github.com/FizzCorp/Fizz-iOS-Framework/releases/tag/v1.0).
 
 #### Embed To Your Xcode Project
->Once you have downloaded and extracted all 3 frameworks i-e; **FizzClient.Framework**, **MQTTClient.framework** and **SocketRocket.framework**. Follow these steps to add the frameworks to your Xcode project.
-
+Once you have downloaded and extracted all 3 frameworks i-e; **FizzClient.Framework**, **MQTTClient.framework** and **SocketRocket.framework**. Follow these steps to add the frameworks to your Xcode project.
 1. Copy the frameworks in your project's frameworks folder
 
 ![](https://user-images.githubusercontent.com/18396012/65511374-82d49d00-def0-11e9-83cc-121d60d8adf8.png)
@@ -30,10 +27,8 @@
 ---------------------
 ### Integration Guide
 ---------------------
-
 #### Threading Model
 The FizzClient uses multiple threads internally to run I/O in the background. However all callbacks and events are posted to the main thread so that the UI can be updated in a safe manner. Also please note that all Fizz client APIs should also be called from the main thread. This simplifies the process of integrating Fizz into iOS applications.
-
 
 #### Setup Event Listener
 1. Make your class inherit FizzChannelMessageListener and implement its delegate methods that you want to observe.
@@ -55,7 +50,6 @@ The FizzClient uses multiple threads internally to run I/O in the background. Ho
 @end
 
 ```
-
 2. register your class' weak reference with Fizz chatClient as a channel message listener (Fizz should be initialized before registering any listeners).
 ```objc
 FizzClient *sharedClient = [FizzClient instance];
@@ -71,9 +65,8 @@ else {
     NSLog(@"fizz:: initError: %@", initError.errorDescription);
 }
 ```
-
 #### Subscribe to Channel
->In order to receive live messages sent in a channel you must subscribe to that channel using the channel's Id.
+In order to receive live messages sent in a channel you must subscribe to that channel using the channel's Id.
 ```objc
 // assuming Fizz is initialized and listener is registered
 [[FizzClient instance].chat subscribeChannel:@"YourChannelId" withErrorAck:^(FizzError *joinError) {
@@ -85,9 +78,8 @@ else {
     }
 }];
 ```
-
 #### Publish Message
->In order to publish a message in a channel follow the following code snippet.
+In order to publish a message in a channel follow the following code snippet.
 ```objc
 // assuming Fizz is initialized and listener is registered
 NSDictionary *myCustomData = @{
@@ -105,9 +97,8 @@ NSDictionary *myCustomData = @{
         }
     }];
 ```
-
 #### Fetch Messages
->In order to fetch historic messages in a channel follow the following code snippet.
+In order to fetch historic messages in a channel follow the following code snippet.
 ```objc
 // assuming Fizz is initialized and listener is registered
 [[FizzClient instance].chat queryLatestMessagesInChannel:@"YourChannelId" withCount:15
