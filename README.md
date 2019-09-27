@@ -1,14 +1,15 @@
 # Fizz-iOS-Framework
+>**FizzClient.framework** is compatible with iOS **8.0** and above. Follow the steps below for installation and Integration.
 
 ----------------
 ### Installation
 ----------------
 
 #### Framework
->Download **FizzClient.Framework.zip** from [Latest Release](https://github.com/FizzCorp/Fizz-iOS-Framework/releases/tag/0.0.1).
+>Download **FizzClient.Framework.zip** from [Latest Release](https://github.com/FizzCorp/Fizz-iOS-Framework/releases/tag/v1.0).
 
 #### Dependent Frameworks
->**FizzClient.framework** requires [MQTTClient.framework](https://github.com/novastone-media/MQTT-Client-Framework) and [SocketRocket.framework](https://github.com/facebook/SocketRocket/releases/tag/0.4.2). For your convenience the dependent frameworks are generated from their respective code repositories and are made part of the releases. Simply download **dependencies.zip** from [Latest Release](https://github.com/FizzCorp/Fizz-iOS-Framework/releases/tag/0.0.1).
+>**FizzClient.framework** requires [MQTTClient.framework](https://github.com/novastone-media/MQTT-Client-Framework) and [SocketRocket.framework](https://github.com/facebook/SocketRocket/releases/tag/0.4.2). For your convenience the dependent frameworks are generated from their respective code repositories and are made part of the releases. Simply download **dependencies.zip** from [Latest Release](https://github.com/FizzCorp/Fizz-iOS-Framework/releases/tag/v1.0).
 
 
 #### Embed To Your Xcode Project
