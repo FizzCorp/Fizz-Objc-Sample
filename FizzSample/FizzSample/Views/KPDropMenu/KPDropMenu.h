@@ -23,6 +23,8 @@ IB_DESIGNABLE
 
 @interface KPDropMenu : UIView
 
+-(void)setEnabled:(BOOL)enabled;
+
 @property (nonatomic, retain) id <KPDropMenuDelegate> delegate;
 
 /*This will assign title of the Drop Menu.*/

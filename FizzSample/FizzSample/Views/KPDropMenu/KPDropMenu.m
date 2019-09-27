@@ -9,12 +9,13 @@
 #import "KPDropMenu.h"
 
 @interface KPDropMenu () <UITableViewDelegate, UITableViewDataSource> {
-    int SelectedIndex;
+    BOOL isCollapsed;
+    int selectedIndex;
+    
+    UILabel *label;
     UITableView *tblView;
     UIFont *selectedFont, *font, *itemFont;
-    BOOL isCollapsed;
     UITapGestureRecognizer *tapGestureBackground;
-    UILabel *label;
 }
 @end
 
@@ -42,20 +43,27 @@
 }
 
 -(void)initLayer {
-    SelectedIndex = -1;
-    isCollapsed = TRUE;
-    _itemTextAlignment = _titleTextAlignment = NSTextAlignmentCenter;
-    _titleColor = [UIColor blackColor];
-    _titleFontSize = 14.0;
-    _itemHeight = 40.0;
-    _itemBackground = [UIColor whiteColor];
-    _itemTextColor = [UIColor blackColor];
-    _itemFontSize = 14.0;
-    _itemsFont = [UIFont systemFontOfSize:14.0];
+    isCollapsed = YES;
     _directionDown = YES;
+    
+    _itemHeight = 40.0;
+    selectedIndex = -1;
+    _itemFontSize = 14.0;
+    _titleFontSize = 14.0;
+    _titleColor = [UIColor blackColor];
+    _itemTextColor = [UIColor blackColor];
+    _itemBackground = [UIColor whiteColor];
+    _itemsFont = [UIFont systemFontOfSize:14.0];
+    
+    _itemTextAlignment = _titleTextAlignment = NSTextAlignmentCenter;
 }
 
 #pragma mark - Setter
+-(void)setEnabled:(BOOL)enabled {
+    [label setEnabled:enabled];
+    [self setUserInteractionEnabled:enabled];
+}
+
 -(void)setTitle:(NSString *)title {
     _title = title;
 }
@@ -232,7 +240,7 @@
     cell.textLabel.font = _itemsFont;
     cell.textLabel.textColor = _itemTextColor;
     
-    if (indexPath.row == SelectedIndex) {
+    if (indexPath.row == selectedIndex) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {
@@ -249,18 +257,18 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SelectedIndex = (int)indexPath.row;
-    label.text = _items[SelectedIndex];
+    selectedIndex = (int)indexPath.row;
+    label.text = _items[selectedIndex];
     
     if(_itemIds.count > 0) {
-        self.tag = [_itemIds[SelectedIndex] integerValue];
+        self.tag = [_itemIds[selectedIndex] integerValue];
     }
     
     isCollapsed = TRUE;
     [self collapseTableView];
     if(_delegate != nil) {
         if([_delegate respondsToSelector:@selector(didSelectItem:atIndex:)]) {
-            [_delegate didSelectItem:self atIndex:SelectedIndex];
+            [_delegate didSelectItem:self atIndex:selectedIndex];
         }
     }
 }

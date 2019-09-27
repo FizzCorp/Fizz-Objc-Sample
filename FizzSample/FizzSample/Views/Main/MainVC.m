@@ -13,6 +13,7 @@
 #define HistoryPageSize     10
 #define CellHeight          60
 #define ConnectText         @"Connect"
+#define ConnectingText      @"Connecting"
 #define DisconnectText      @"Disconnect"
 #define TableCellId         @"Message Cell"
 #define GlobalChannel       @"global-sample"
@@ -118,6 +119,11 @@
     [_messagesTable setCanCancelContentTouches:NO];
 }
 
+-(void)setDropdownsEnabled:(BOOL)enabled {
+    [_userDropdown setEnabled:enabled];
+    [_localeDropdown setEnabled:enabled];
+}
+
 -(void)showAlert:(NSString *)message {
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Fizz" message:message preferredStyle:UIAlertControllerStyleAlert];
@@ -183,8 +189,10 @@
 -(void)openFizz {
     __weak MainVC *wself = self;
     [[FizzClient instance] openWithUser:_userId locale:_locale.intValue services:All andErrorAck:^(FizzError *openError) {
-        [wself.toggleBtn setEnabled:YES];
         if(openError) {
+            // enabled from onConnected in success scenario
+            [wself.toggleBtn setEnabled:YES];
+            
             NSLog(@"fizz:: openError: %@", openError.errorDescription);
             [wself showAlert:@"Unable to open connection!!!"];
         }
@@ -329,8 +337,15 @@
 
 #pragma mark - delegate methods - FizzChannelMessageListener
 -(void)onDisconnectedEventReceived {
-    [_toggleBtn setTitle:ConnectText forState:UIControlStateNormal];
+    BOOL isReconnecting = ([[FizzClient instance] state] == Opened);
+    NSString *btnText = isReconnecting ? ConnectingText : ConnectText;
+    if(isReconnecting) {
+        [_toggleBtn setEnabled:NO];
+    }
+    
+    [_toggleBtn setTitle:btnText forState:UIControlStateNormal];
     [self clearMessagesTable];
+    [self setDropdownsEnabled:!isReconnecting];
 }
 
 -(void)onMessagePublishedEventReceived:(FizzChannelMessage *)message {
@@ -338,8 +353,11 @@
 }
 
 -(void)onConnectedEventReceived:(BOOL)status syncRequired:(BOOL)syncRequired {
+    [_toggleBtn setEnabled:YES];
     [_toggleBtn setTitle:DisconnectText forState:UIControlStateNormal];
+    
     [self fetchHistoricMessages];
+    [self setDropdownsEnabled:NO];
 }
 
 @end
