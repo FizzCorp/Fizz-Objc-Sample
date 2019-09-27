@@ -20,7 +20,7 @@ Once you have downloaded and extracted all 3 frameworks i-e; **FizzClient.Framew
 
 ![](https://user-images.githubusercontent.com/18396012/65511375-836d3380-def0-11e9-9fb4-eb1c3a916b6a.png)
 
-3. Embed the frameworks to your project from project settings **General > Embeded Frameworks** section
+3. Embed the frameworks to your project from project settings ```General > Embeded Frameworks``` section
 
 ![](https://user-images.githubusercontent.com/18396012/65749209-260af980-e11f-11e9-86ea-19fad96ba4e6.png)
 
