@@ -177,7 +177,7 @@
     NSDictionary *info = [notification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    CGFloat botMargin = keyboardSize.height + _messageInput.frame.size.height;
+    CGFloat botMargin = keyboardSize.height;
     [self animateMessageField:(-1 * botMargin)];
 }
 
