@@ -238,6 +238,8 @@
 }
 
 -(void)fetchHistoricMessages {
+    [self clearMessagesTable];
+    
     __weak MainVC *wself = self;
     [[FizzClient instance].chat queryLatestMessagesInChannel:GlobalChannel withCount:HistoryPageSize andQueryAck:^(NSArray<FizzChannelMessage *> *messages, FizzError *fetchError) {
         if(fetchError) {
@@ -344,7 +346,6 @@
     }
     
     [_toggleBtn setTitle:btnText forState:UIControlStateNormal];
-    [self clearMessagesTable];
     [self setDropdownsEnabled:!isReconnecting];
 }
 
@@ -356,8 +357,10 @@
     [_toggleBtn setEnabled:YES];
     [_toggleBtn setTitle:DisconnectText forState:UIControlStateNormal];
     
-    [self fetchHistoricMessages];
     [self setDropdownsEnabled:NO];
+    if(syncRequired) {
+        [self fetchHistoricMessages];
+    }
 }
 
 @end
