@@ -15,6 +15,7 @@
 #define ConnectText         @"Connect"
 #define ConnectingText      @"Connecting"
 #define DisconnectText      @"Disconnect"
+#define DisconnectingText   @"Disconnecting"
 #define TableCellId         @"Message Cell"
 #define GlobalChannel       @"global-sample"
 #define AppId               @"751326fc-305b-4aef-950a-074c9a21d461"
@@ -187,6 +188,8 @@
 
 #pragma mark - private helper methods - fizz lifecycle
 -(void)openFizz {
+    [_toggleBtn setTitle:ConnectingText forState:UIControlStateNormal];
+    
     __weak MainVC *wself = self;
     [[FizzClient instance] openWithUser:_userId locale:_locale.intValue services:All andErrorAck:^(FizzError *openError) {
         if(openError) {
@@ -200,6 +203,8 @@
 }
 
 -(void)closeFizz {
+    [_toggleBtn setTitle:DisconnectingText forState:UIControlStateNormal];
+    
     __weak MainVC *wself = self;
     [[FizzClient instance] close:^(FizzError *closeError) {
         [wself.toggleBtn setEnabled:YES];
